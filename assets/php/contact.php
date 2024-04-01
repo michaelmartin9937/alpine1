@@ -8,7 +8,7 @@ $recipientName='Joe Baker';
 
 $senderName = $_POST['contact-name'];
 $senderEmail = $_POST['contact-email'];
-$senderSubject = 'New Message From' . $senderName . $senderEmail;
+$senderSubject = 'New Message From ' . $senderName . $senderEmail;
 $senderMessage = $_POST['contact-message'];
 
 //Create a new PHPMailer instance
