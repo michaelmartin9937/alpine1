@@ -1,0 +1,59 @@
+ <!-- <script src="https://unpkg.com/@supabase/supabase-js"></script> -->
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+  
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+
+  <script>
+      const { createClient } = supabase
+      supabase = createClient("https://nvglelxsjohkmkemztxt.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52Z2xlbHhzam9oa21rZW16dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMxNDE4ODAsImV4cCI6MjAyODcxNzg4MH0.IeuR9Kmo3ZsJoKPbs0zamZatCRikCg-uXKtZlRZBQ5Q")
+      
+      const form = document.querySelector('#contact-form')
+      form.addEventListener('submit', async (event) => {
+          event.preventDefault()
+
+          const formInputs = form.querySelectorAll('input, select, textarea')
+
+          let submision = {}
+
+          formInputs.forEach(element => {
+            const { value, name } = element
+            if (value) {
+                submision[name] = value
+            }
+          })
+
+          const { error } = await supabase.from('entries').insert([submision], { returning: 'minimal'})
+
+          if (error) {
+              alert('There was an error please try again')
+          } else {
+              alert('Thanks for contacting us')
+          }
+
+          formInputs.forEach(element => element.value = '')
+
+      })
+
+
+      const channel = supabase
+        .channel('table_db_changes')
+        .on(
+          'postgres_changes' ,
+          {
+            event: '*',
+            schema: 'public',
+            table: 'messages',
+            filter: 'body=eq.hey',
+          },
+          (payload) {
+            // do something useful with the payload
+            const eventType = payload.eventType
+            const newRecord = payload.new 
+            const oldRecord = payload.old 
+          }
+        )
+        .subscribe() 
+
+  </script>
