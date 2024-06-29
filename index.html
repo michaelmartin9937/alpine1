@@ -26,9 +26,7 @@
     
       gtag('config', 'AW-16521398787');
     </script>
-    <script
-
-    >
+    <script    >
       gtag('config', 'AW-16521398787/ZlFSCLzZ7q4ZEIOUgsY9', {
         'phone_conversion_number': '(915) 240-3948'
       });
@@ -693,7 +691,7 @@
                       <h5 class="card-heading">get in touch</h5>
                       <p class="card-desc">We take great pride in everything we do and hope you will pay us the ultimate compliment -<br> "you guys definitely have OCD."</p>
                       <!-- <form class="contactForm" method="post" action="assets/php/contact.php"> -->
-                      <form class="contactForm" name="contact" id="contact-form">
+                      <form class="contactForm" target="_blank" name="contact" action="https://formsubmit.co/dylan@starmorph.com" method="POST" id="contact-form">
                         <div class="row">
                           <div class="col-12 col-md-6">
                             <input class="form-control" type="text" id="contact-name" name="name" placeholder="Name" required=""/>
@@ -766,13 +764,87 @@
         <!-- End .container-->
       </section>
 
-   
- 
+      
+      <!-- New scripts from Fiverr -->
+      <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+
+      <script>
+          const { createClient } = supabase
+          supabase = createClient("https://nvglelxsjohkmkemztxt.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52Z2xlbHhzam9oa21rZW16dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMxNDE4ODAsImV4cCI6MjAyODcxNzg4MH0.IeuR9Kmo3ZsJoKPbs0zamZatCRikCg-uXKtZlRZBQ5Q")
+          
+          const form = document.querySelector('#contact-form')
+          form.addEventListener('submit', async (event) => {
+              event.preventDefault()
+    
+              const formInputs = form.querySelectorAll('input, select, textarea')
+    
+              let submision = {}
+    
+              formInputs.forEach(element => {
+                const { value, name } = element
+                if (value) {
+                    submision[name] = value
+                }
+              })
+    
+              const { error } = await supabase.from('entries').insert([submision], { returning: 'minimal'})
+    
+              if (error) {
+                  alert('There was an error please try again')
+              } else {
+                console.log('new entry')
+                  // alert('Thanks for contacting us')
+                  // window.location.href = "thank-you.html";
+                sendEmail(submision)
+              }
+    
+              formInputs.forEach(element => element.value = '')
+    
+          }) 
+    
+         //send email function
+      async function sendEmail(data) {
+        console.log('dta===?',data)
+        const name = data?.name
+        const email = data?.email
+        const message = data?.message
+        const phone = data?.phone
+        const equipment_type = data?.subject
+        const mail_subject = 'You have received a new client request.'
+    
+    
+        // Call the edge function
+        try {
+          const response = await fetch('https://nvglelxsjohkmkemztxt.supabase.co/functions/v1/send_emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52Z2xlbHhzam9oa21rZW16dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMxNDE4ODAsImV4cCI6MjAyODcxNzg4MH0.IeuR9Kmo3ZsJoKPbs0zamZatCRikCg-uXKtZlRZBQ5Q`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, message, phone, equipment_type , mail_subject })
+          });
+    
+          const data = await response.text();
+           setTimeout(function () {
+            window.location.href = "thank-you.html";
+         }, 3000);
+          console.log(data);
+        } catch (error) {
+          console.error('Error calling send_emails function:', error);
+        }
+      }
+      
+    
+      </script>
+    
+
+  <!-- Old scripts i made -->
   <!-- <script src="https://unpkg.com/@supabase/supabase-js"></script> -->
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
   
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <!-- <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   
 
   <script>
@@ -799,14 +871,19 @@
           if (error) {
               alert('There was an error please try again')
           } else {
-              alert('Thanks for contacting us')
+            console.log('new entry')
+              // alert('Thanks for contacting us')
+              window.location.href = "thank-you.html";
+          
           }
 
           formInputs.forEach(element => element.value = '')
 
       }) 
 
-  </script>
+    
+
+  </script> -->
 
       
       
