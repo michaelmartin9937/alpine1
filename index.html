@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="author" content="Ayman Fikry"/>
+    <meta name="author" content="Michael Martin"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
     <meta name="description" content="Alpine Dry Ice Blasting Services"/>
-    <title>Alpine Dry Ice Blasting</title>
+    <!-- <title>Alpine Dry Ice Blasting</title> -->
+    <title>Dry Ice Blasting Cleaning Service | Automotive Detailing | Industrial Cleaning | Fire Restoration | Food Service</title>
     <link href="assets/images/favicon/favicon.png" rel="icon"/>
     <!--  Fonts ==
     -->
@@ -542,6 +543,41 @@
             <div class="col-12 col-md-6 col-lg-4">
               <div class="service-panel">
                 <div class="service-content"> 
+                  <div class="service-icon"> <i class="fimanager flaticon-004-cleaning"></i></div>
+                  <div class="service-title">
+                    <h3><a href="service-single.html">Food Production Cleaning</a></h3>
+                  </div>
+                  <div class="service-desc">
+                    <p>Our dry ice blasting cleaning service is safe for use in food production and packaging facilities, as it uses no chemicals or water. It is effective in removing bacteria, mold, and other contaminants from food processing equipment and packaging machines, ensuring that your facility is clean and safe for food production.</p>
+                  </div>
+                  <div class="service-more"><a class="btn justify-content-between" href="#contact-1">inquire now<i class="icon-arrow-right"></i></a></div>
+                </div>
+                <!-- End .service-content -->
+                <div class="service-img"><img src="assets/images/services/1.jpg" alt="service img"/></div>
+                <!-- End .service-img-->
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="service-panel">
+                <div class="service-content"> 
+                  <!-- <div class="service-icon"> <i class="fimanager flaticon-015-brush"></i></div> -->
+                  <div class="service-icon"> <i class="fimanager flaticon-015-brush"></i></div>
+                  <div class="service-title">
+                    <h3><a href="service-single.html">Automotive Cleaning</a></h3>
+                  </div>
+                  <div class="service-desc">
+                    <p>Our dry ice blasting service is ideal for automotive cleaning, as it can remove PPF, grease, and other contaminants from cars, chassis, and other components. It is also safe for sensitive electronic equipment, ensuring that no damage is done during the cleaning process.</p>
+                  </div>
+                  <div class="service-more"><a class="btn justify-content-between" href="#contact-1">inquire now<i class="icon-arrow-right"></i></a></div>
+                </div>
+                <!-- End .service-content -->
+                <div class="service-img"><img src="assets/images/services/1.jpg" alt="service img"/></div>
+                <!-- End .service-img-->
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="service-panel">
+                <div class="service-content"> 
                   <div class="service-icon"> <i class="fimanager flaticon-002-shield"></i></div>
                   <div class="service-title">
                     <h3><a href="">Assembly Line Cleaning</a></h3>
@@ -590,40 +626,8 @@
                 <!-- End .service-img-->
               </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="service-panel">
-                <div class="service-content"> 
-                  <div class="service-icon"> <i class="fimanager flaticon-015-brush"></i></div>
-                  <div class="service-title">
-                    <h3><a href="service-single.html">Automotive Cleaning</a></h3>
-                  </div>
-                  <div class="service-desc">
-                    <p>Our dry ice blasting service is ideal for automotive cleaning, as it can remove PPF, grease, and other contaminants from cars, chassis, and other components. It is also safe for sensitive electronic equipment, ensuring that no damage is done during the cleaning process.</p>
-                  </div>
-                  <div class="service-more"><a class="btn justify-content-between" href="#contact-1">inquire now<i class="icon-arrow-right"></i></a></div>
-                </div>
-                <!-- End .service-content -->
-                <div class="service-img"><img src="assets/images/services/1.jpg" alt="service img"/></div>
-                <!-- End .service-img-->
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="service-panel">
-                <div class="service-content"> 
-                  <div class="service-icon"> <i class="fimanager flaticon-016-tissues"></i></div>
-                  <div class="service-title">
-                    <h3><a href="service-single.html">Food Production Cleaning</a></h3>
-                  </div>
-                  <div class="service-desc">
-                    <p>Our dry ice blasting cleaning service is safe for use in food production and packaging facilities, as it uses no chemicals or water. It is effective in removing bacteria, mold, and other contaminants from food processing equipment and packaging machines, ensuring that your facility is clean and safe for food production.</p>
-                  </div>
-                  <div class="service-more"><a class="btn justify-content-between" href="#contact-1">inquire now<i class="icon-arrow-right"></i></a></div>
-                </div>
-                <!-- End .service-content -->
-                <div class="service-img"><img src="assets/images/services/1.jpg" alt="service img"/></div>
-                <!-- End .service-img-->
-              </div>
-            </div>
+            
+            
             <div class="col-12 col-md-6 col-lg-4">
               <div class="service-panel">
                 <div class="service-content"> 
@@ -997,6 +1001,43 @@
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/functions.js"></script>
+
+
+    <!-- Hubspot Integration -->
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const phone = document.getElementById('contact-phone').value;
+      const category = document.getElementById('select-1').value;
+      const message = document.getElementById('contact-infos').value;
+      const url = 'script.php'; 
+        const data = {
+            apiUrl: "https://api.hubapi.com/crm/v3/objects/contacts", 
+            body: {
+              "properties" : {
+                "email" : email,
+                "firstname" : name,
+                "phone" : phone,
+                "contact_equipment_category" : category,
+                "additional_information" : message
+              }
+            }
+        };
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        const responseData = await response.json();
+        console.log(responseData)
+       
+      });
+    </script>
+
   </body>
 </html>
 
